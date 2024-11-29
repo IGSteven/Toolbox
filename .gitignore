@@ -128,3 +128,8 @@ dist
 .yarn/build-state.yml
 .yarn/install-state.gz
 .pnp.*
+
+# Toolbox Data
+data/*
+temp-exclude/*
+package-lock.json

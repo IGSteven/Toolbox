@@ -1,0 +1,23 @@
+{
+  "name": "toolbox",
+  "version": "1.0.0",
+  "description": "IGSteven's Toolbox for Network & Servers",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/IGSteven/toolbox.git"
+  },
+  "author": "Steven Smith (@IGSteven)",
+  "license": "GPL-3.0-or-later",
+  "bugs": {
+    "url": "https://github.com/IGSteven/toolbox/issues"
+  },
+  "homepage": "https://github.com/IGSteven/toolbox#readme",
+  "dependencies": {
+    "express": "^4.21.1",
+    "selfsigned": "^2.4.1"
+  }
+}

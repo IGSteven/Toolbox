@@ -12,7 +12,7 @@
 //
 
 global.__basedir = __dirname;
-const app = require('./src/app');
+const app = require(__basedir + '/src/webserver.js');
 
 
 /// TESTING AREA // 
