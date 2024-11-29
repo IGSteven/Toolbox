@@ -31,6 +31,26 @@
         }
     ],
     "paths": {
+        "/ping": {
+            "get": {
+                "tags": [ "/" ],
+                "summary": "Ping",
+                "description": "Ping the server",
+                "operationId": "ping",
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "type": "string",
+                            "example": "pong"
+                        }
+                    }
+                }
+            }
+        },
         "/ip": {
             "get": {
                 "tags": [ "/" ],

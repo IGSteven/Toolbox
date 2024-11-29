@@ -3,6 +3,7 @@ const api = express.Router();
 const path = require('path');
 
 // Version 1 API routes
+api.use('/network', require(path.join(__basedir, 'src', 'api' ,'v1', 'network')));
 api.use('/ukdsl', require(path.join(__basedir, 'src', 'api' ,'v1', 'ukservers')));
 
 // ###########################################
@@ -32,9 +33,7 @@ api.get('/whoami', (req, res, next) => {
 api.get('/ping', (req, res, next) => {
     res.locals.apiresponse = {
         message: 'pong',
-        result: {
-            status: 'success'
-        }
+        result: 'pong'
     };
     next();
 });
