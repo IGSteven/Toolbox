@@ -106,6 +106,74 @@
                 }
             }
         },
+        "/network/asn/{asn}": {
+            "get": {
+                "tags": [ "/network" ],
+                "summary": "Get ASN Information",
+                "description": "Get ASN Information",
+                "operationId": "asn",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "asn",
+                        "in": "path",
+                        "description": "ASN",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "asn": {
+                                    "type": "string",
+                                    "example": "51692"
+                                },
+                                "holder": {
+                                    "type": "string",
+                                    "example": "HYBERHOST - Steven Smith trading as HyberHost"
+                                },
+                                "parent": {
+                                    "type": "object",
+                                    "properties": {
+                                        "resource": {
+                                            "type": "string",
+                                            "example": "51200-52223"
+                                        },
+                                        "description": {
+                                            "type": "string",
+                                            "example": "RIPE NCC ASN block"
+                                        },
+                                        "name": {
+                                            "type": "string",
+                                            "example": "RIPE NCC"
+                                        }
+                                    }
+                                },
+                                "announced": {
+                                    "type": "boolean",
+                                    "example": true
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid ASN supplied"
+                    },
+                    "404": {
+                        "description": "ASN not found"
+                    },
+                    "500": {
+                        "description": "Internal Server Error"
+                    }
+                }
+            }
+        },
         "/ukdsl/ipmi/{S-id}": {
             "get": {
                 "tags": [ "/ukdsl" ],
