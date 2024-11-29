@@ -24,6 +24,7 @@ api.get('/ipmi/:id', (req, res, next) => {
     }
     result.netmask = '255.255.0.0';
     result.gateway = '10.95.0.1';
+
     res.locals.apiresponse = {
         message: `IPMI 205 for ${result.ref}`,
         result: result

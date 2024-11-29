@@ -18,6 +18,12 @@ app.get('/', (req, res) => {
   res.redirect('/docs');
 });
 
+// Swagger
+const swaggerUi = require('swagger-ui-express');
+const swaggerDocument = require('./api/swagger.json');
+app.use('/docs', swaggerUi.serve);
+app.get('/docs', swaggerUi.setup(swaggerDocument));
+
 // Endpoints
 app.use('/api', require(path.join(__basedir, 'src', 'api')));
 // app.use('/docs', require(path.join(__basedir, 'src', 'docs')));

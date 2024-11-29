@@ -1,0 +1,181 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "title": "API",
+        "version": "1.0.0"
+    },
+    "host": "toolboxdev.igsteven.com",
+    "basePath": "/api/v1",
+    "consumes": [
+        "application/json"
+    ],
+    "produces": [
+        "application/json"
+    ],
+    "tags": [
+        {
+            "name": "/",
+            "description": "General Tools"
+        },
+        {
+            "name": "/network",
+            "description": "Network Tools"
+        },
+        {
+            "name": "/server",
+            "description": "Server Tools"
+        },
+        {
+            "name": "/ukdsl",
+            "description": "UKServers Specific Tools"
+        }
+    ],
+    "paths": {
+        "/ip": {
+            "get": {
+                "tags": [ "/" ],
+                "summary": "Get IP Address",
+                "description": "Get IP Address",
+                "operationId": "ip",
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "type": "string",
+                            "example": "172.0.0.1"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error"
+                    }
+                }
+            }
+        },
+        "/whoami": {
+            "get": {
+                "tags": [ "/" ],
+                "summary": "Get User Agent",
+                "description": "Get User Agent",
+                "operationId": "whoami",
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "ip": {
+                                    "type": "string",
+                                    "example": "172.0.0.1"
+                                },
+                                "userAgent": {
+                                    "type": "string",
+                                    "example": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.3"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error"
+                    }
+                }
+            }
+        },
+        "/ukdsl/ipmi/{S-id}": {
+            "get": {
+                "tags": [ "/ukdsl" ],
+                "summary": "Get IPMI data for Server ID",
+                "description": "Get IPMI data",
+                "operationId": "ipmi",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "S-id",
+                        "in": "path",
+                        "description": "Server ID",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "ref": {
+                                    "type": "string",
+                                    "example": "S-51"
+                                },
+                                "id": {
+                                    "type": "string",
+                                    "example": "51"
+                                },
+                                "address": {
+                                    "type": "string",
+                                    "example": "10.95.7.179"
+                                },
+                                "netmask": {
+                                    "type": "string",
+                                    "example": "255.255.0.0"
+                                },
+                                "gateway": {
+                                    "type": "string",
+                                    "example": "10.95.0.1"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid ID supplied"
+                    },
+                    "404": {
+                        "description": "Server not found"
+                    }
+                }
+            }
+        },
+        "/ukdsl/ipmi2id/{IPv4}": {
+            "get": {
+                "tags": [ "/ukdsl" ],
+                "summary": "Get Server ID from IPMI IPv4",
+                "description": "Get Server ID",
+                "operationId": "ipmi2id",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "IPv4",
+                        "in": "path",
+                        "description": "IPMI IPv4",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "type": "string",
+                            "example": "S-51"
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid IPv4 supplied"
+                    },
+                    "404": {
+                        "description": "Server not found"
+                    }
+                }
+            }
+        }
+    }
+}

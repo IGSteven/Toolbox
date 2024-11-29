@@ -15,7 +15,7 @@ const utils = {
         const sref = `S-${sid}`;
 
         if (!sid || sid < 0 || sid > 9999) {
-            throw new Error('Invalid ID');
+            return new Error('Invalid ID');
         }
 
         const ipminum = offset + parseInt(sid, 10);
@@ -48,15 +48,22 @@ const utils = {
         }
     },
 
-    fetchLibrenms(endpoint, selected = "default") {
+    fetchLibrenms(endpoint, selected="default") {
+        console.log(config.librenms);
+        const librems = config.librenms[selected];
+        if (!librems) throw new Error('Invalid Librenms configuration');
+        if (!librems.enabled) throw new Error('Librenms configuration disabled');
+        
         const requrl = config.librenms[selected].url + endpoint;
         const headers = {
-            'X-Auth-Token': process.env.LIBRENMS_API_KEY,
+            'X-Auth-Token': config.librenms[selected].apiKey,
             'Content-Type': 'application/json',
         };
 
-        return axios.get(requrl, { headers });
+        return axios.get(requrl, { headers }).then(response => response.data);
     }
+
+
 };
 
 module.exports = utils;

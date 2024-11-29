@@ -10,15 +10,21 @@ api.use('/ukdsl', require(path.join(__basedir, 'src', 'api' ,'v1', 'ukservers'))
 
 api.get('/ip', (req, res, next) => {
     const ipaddr = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
-    res.locals.apiresponse = { ip: ipaddr };
+    res.locals.apiresponse = {
+        message: 'Your IP Address',
+        result: ipaddr
+    };
     next();
 });
 
 api.get('/whoami', (req, res, next) => {
     const userAgent = req.headers['user-agent'] || '';
     res.locals.apiresponse = {
-        ip: req.headers['x-forwarded-for'] || req.connection.remoteAddress,
-        userAgent: userAgent
+        message: 'Who Am I?',
+        result: {
+            ip: req.headers['x-forwarded-for'] || req.connection.remoteAddress,
+            userAgent: userAgent
+        }
     };
     next();
 });
