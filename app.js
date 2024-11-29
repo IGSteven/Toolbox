@@ -12,7 +12,10 @@
 //
 
 global.__basedir = __dirname;
-const app = require(__basedir + '/src/webserver.js');
+global.utils = require(__basedir + '/src/utils');
+global.config = require(__basedir + '/data/config');
+global.tmp = {};
+const app = require(__basedir + '/src/webserver');
 
 
 /// TESTING AREA // 
